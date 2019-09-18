@@ -7,7 +7,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //menu principal
+        //menu principal frtia virtual
+        // lets go
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
