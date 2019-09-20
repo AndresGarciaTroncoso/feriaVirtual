@@ -8,7 +8,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //menu principal frtia virtual
-        // 1 er commit
+        // 1 er commit asd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
