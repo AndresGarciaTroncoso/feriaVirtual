@@ -2,20 +2,32 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.feriavirtualapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_feria_virtual"
-        android:label="@string/app_name"
+        android:label="FeriaVirtual"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--Auth0 Lock-->
+        <activity
+            android:name="com.auth0.android.lock.LockActivity"
+            android:label="Classic Lock"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Lock.Theme"/>
+        <!--Auth0 Lock End-->
+
     </application>
 
 </manifest>

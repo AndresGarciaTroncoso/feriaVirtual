@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">FeriaVirtualApp</string>
+    <string name="app_name">feriavirtual</string>
+    <string name="com_auth0_client_id">yC3U4Nc3yG4kjLP1IT3EFdtrSHrrck6r</string>
+    <string name="com_auth0_domain">dev-5f39w36l.auth0.com</string>
 </resources>
