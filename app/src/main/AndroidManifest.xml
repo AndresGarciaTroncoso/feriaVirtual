@@ -11,23 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:launchMode="singleTask"
+        <activity android:name=".LoginActivity"
+            android:label="FeriaVirtual"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--Auth0 Lock-->
-        <activity
-            android:name="com.auth0.android.lock.LockActivity"
-            android:label="Classic Lock"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/Lock.Theme"/>
-        <!--Auth0 Lock End-->
-
+        <activity android:name=".MainActivity"
+            android:parentActivityName=".LoginActivity"/>
+        <activity android:name=".ProcesoVentaActivity"
+            android:label="Proceso Venta" />
     </application>
 
 </manifest>

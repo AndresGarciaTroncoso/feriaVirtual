@@ -2,84 +2,62 @@ package com.example.feriavirtualapp;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
-import com.auth0.android.Auth0;
-import com.auth0.android.authentication.AuthenticationException;
-import com.auth0.android.lock.AuthenticationCallback;
-import com.auth0.android.lock.Lock;
-import com.auth0.android.lock.LockCallback;
-import com.auth0.android.lock.utils.LockException;
-import com.auth0.android.provider.AuthCallback;
-import com.auth0.android.provider.WebAuthProvider;
-import com.auth0.android.result.Credentials;
+import com.example.feriavirtualapp.bd.DatabaseHelper;
 
-public class MainActivity extends Activity {
-    private Lock lock;
+import java.io.IOException;
+
+
+public class MainActivity extends AppCompatActivity {
+
+    Button btnProceso;
+    String usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       //setContentView(R.layout.activity_main);
+       setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+       limpiarProcesoVenta();
+
+        btnProceso = findViewById(R.id.btnProceso);
 
 
-        Auth0 auth0 = new Auth0(getString(R.string.com_auth0_client_id), getString(R.string.com_auth0_domain));
-        // Auth0 auth0 = new Auth0("yC3U4Nc3yG4kjLP1IT3EFdtrSHrrck6r","dev-5f39w36l.auth0.com");
-        auth0.setOIDCConformant(true);
-
-        WebAuthProvider.login(auth0)
-                .withAudience(String.format("https://%s/userinfo", getString(R.string.com_auth0_domain)))
-                .start(this, new AuthCallback() {
-                    @Override
-                    public void onFailure(@NonNull Dialog dialog) {
-
-                    }
-
-                    @Override
-                    public void onFailure(AuthenticationException exception) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(@NonNull Credentials credentials) {
-
-                    }
-                });
-
-      /*  lock = Lock.newBuilder(auth0,callback)
-                .withAudience(String.format("https://%s/userinfo", getString(R.string.com_auth0_domain)))
-                .build(this);
-                */
-
+        usuario= getIntent().getExtras().getString("usuario");
 
     }
 
-    @Override
-    protected  void  onDestroy () {
-        super . onDestroy ();
-        // Tu propio código de
-        startActivity(lock.newIntent(this));
-        lock.onDestroy(this);
-        lock = null;
+    public void proceso(View view)
+    {
+
+
+        Intent i = new Intent(MainActivity.this,ProcesoVentaActivity.class);
+        i.putExtra("usuario",usuario);
+        startActivity(i);
     }
 
-    private LockCallback callback = new AuthenticationCallback() {
-        @Override
-        public void onAuthentication(Credentials credentials) {
-            System.out.println("LLEGO AUTENTICADO SUCCES");
+    public void limpiarProcesoVenta(){
+        DatabaseHelper bd = new DatabaseHelper(this);
+        try {
+            bd.createDataBase();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        bd.openDataBase();
 
-        @Override
-        public void onCanceled() {
-            System.out.println("AUTH0 CANCELADO");
-        }
+        bd.myDataBase.execSQL("DELETE FROM ProcesoVenta ");
+        bd.myDataBase.close();
+    }
 
-        @Override
-        public void onError(LockException error) {
-            System.out.println("AUTH0 ERROR");
-        }
-    };
+
+
 }
