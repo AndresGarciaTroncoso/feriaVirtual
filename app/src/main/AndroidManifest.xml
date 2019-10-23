@@ -23,6 +23,8 @@
             android:parentActivityName=".LoginActivity"/>
         <activity android:name=".ProcesoVentaActivity"
             android:label="Proceso Venta" />
+        <activity android:name=".MisDatos"
+            android:label="Mis Datos"/>
     </application>
 
 </manifest>

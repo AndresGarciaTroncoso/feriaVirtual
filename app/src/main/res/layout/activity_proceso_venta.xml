@@ -13,8 +13,9 @@
         android:layout_height="41dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="96dp"
-        android:text="Seleccione Prceso de Venta"
-        android:textAlignment="viewStart"
+        android:text="Procesos de Venta"
+        android:textAlignment="center"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -23,6 +23,7 @@
         android:layout_marginTop="200dp"
         android:layout_marginEnd="104dp"
         android:text="Mis Datos"
+        android:onClick="MisDatos"
         android:background="#00574B"
         android:textColor="#FFFF"
         app:layout_constraintEnd_toEndOf="parent"

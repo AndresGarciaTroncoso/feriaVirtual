@@ -30,12 +30,19 @@ public class MainActivity extends AppCompatActivity {
        limpiarProcesoVenta();
 
         btnProceso = findViewById(R.id.btnProceso);
-
-
         usuario= getIntent().getExtras().getString("usuario");
 
     }
 
+
+    public void MisDatos(View view)
+    {
+
+
+        Intent i = new Intent(MainActivity.this,MisDatos.class);
+        i.putExtra("usuario",usuario);
+        startActivity(i);
+    }
     public void proceso(View view)
     {
 

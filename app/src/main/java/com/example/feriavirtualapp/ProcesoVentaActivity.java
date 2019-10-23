@@ -127,7 +127,7 @@ public class ProcesoVentaActivity  extends AppCompatActivity {
         registro.put("pedidoId", pedidoId);
         // registro.put("vigencia",1);
         bd.myDataBase.insert("ProcesoVenta", null, registro);
-        System.out.println("GRABO USUARIO:"+estado);
+        System.out.println("GRABO proceso venta:"+estado);
         bd.myDataBase.close();
 
     }
@@ -144,7 +144,7 @@ public class ProcesoVentaActivity  extends AppCompatActivity {
         bd.openDataBase();
 
 
-        String q="select fechaInicio , tipoVenta , estado , pedidoId from ProcesoVenta ";
+        String q="select pedidoId,substr(fechaInicio,0,11) as fecha, tipoVenta , estado from ProcesoVenta";
         Cursor cursor = bd.myDataBase.rawQuery(q, null);
 
         lsProcesos= new ArrayList<String>();
@@ -152,7 +152,7 @@ public class ProcesoVentaActivity  extends AppCompatActivity {
             Integer v_idEstructura;
 
 
-            lsProcesos.add(cursor.getString(3)+"-"+ cursor.getString(0)+" "+cursor.getString(1)+" "+cursor.getString(2));
+            lsProcesos.add(cursor.getString(0)+"-"+ cursor.getString(3)+" "+cursor.getString(1)+" "+cursor.getString(2));
 
         }
         bd.myDataBase.close();
@@ -193,16 +193,5 @@ public class ProcesoVentaActivity  extends AppCompatActivity {
         i.putExtra("usuario",usuario);
         startActivity(i);
     }
-    public void limpiarProcesoVenta(){
-        DatabaseHelper bd = new DatabaseHelper(this);
-        try {
-            bd.createDataBase();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        bd.openDataBase();
 
-        bd.myDataBase.execSQL("DELETE FROM ProcesoVenta ");
-        bd.myDataBase.close();
-    }
 }
